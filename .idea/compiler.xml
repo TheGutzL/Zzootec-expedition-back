@@ -10,11 +10,13 @@
         <module name="microservice.eureka" />
         <module name="microservice.config" />
         <module name="microservice.gateway" />
+        <module name="microservice-category" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="microservice-category" options="-parameters" />
       <module name="microservice-product" options="-parameters" />
       <module name="microservice.config" options="-parameters" />
       <module name="microservice.eureka" options="-parameters" />

@@ -1,0 +1,56 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<microservice.config>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.microservice.config.Application",
+      "projectName": "microservice.config",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<microservice.eureka>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.microservice.eureka.Application",
+      "projectName": "microservice.eureka",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<microservice.gateway>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.microservice.gateway.Application",
+      "projectName": "microservice.gateway",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53301 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice.gateway"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MicroserviceProductApplication<microservice-product>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.microservice.product.MicroserviceProductApplication",
+      "projectName": "microservice-product",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53313 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-product"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MicroserviceCategoryApplication<microservice-category>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.microservice.category.MicroserviceCategoryApplication",
+      "projectName": "microservice-category",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

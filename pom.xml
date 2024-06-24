@@ -18,6 +18,7 @@
 
   <modules>
     <module>microservice-product</module>
+    <module>microservice-category</module>
     <module>microservice.gateway</module>
     <module>microservice.eureka</module>
     <module>microservice.config</module>
