@@ -16,7 +16,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<Product> findAll() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     @Override
@@ -30,8 +30,13 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Product> findByIdCategory(Long idCategory) {
-        return productRepository.findAllProducts(idCategory);
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
     }
+
+    // @Override
+    // public List<Product> findByIdCategory(Long idCategory) {
+    //     return productRepository.findAllProducts(idCategory);
+    // }
     
 }

@@ -11,5 +11,6 @@ public interface IProductService {
 
     void save(Product product);
 
-    List<Product> findByIdCategory(Long idCategory);
+    void deleteById(Long id);
+    // List<Product> findByIdCategory(Long idCategory);
 }

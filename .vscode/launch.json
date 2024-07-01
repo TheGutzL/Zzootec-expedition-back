@@ -8,7 +8,8 @@
       "mainClass": "com.microservice.config.Application",
       "projectName": "microservice.config",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57106 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice.config"
     },
     {
       "type": "java",
@@ -18,7 +19,8 @@
       "mainClass": "com.microservice.eureka.Application",
       "projectName": "microservice.eureka",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57134 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice.eureka"
     },
     {
       "type": "java",
@@ -49,6 +51,16 @@
       "cwd": "${workspaceFolder}",
       "mainClass": "com.microservice.category.MicroserviceCategoryApplication",
       "projectName": "microservice-category",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MicroserviceSecurityApplication<microservice-security>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.zzootec.security.MicroserviceSecurityApplication",
+      "projectName": "microservice-security",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
     }

@@ -18,6 +18,23 @@ spring:
           uri: "http://localhost:9090"
           predicates:
             - Path=/api/category/**
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/zzootecdb
+    username: root
+    password: TheKing
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 eureka:
   client:
     register-with-eureka: false
+
+security:
+  jwt:
+    key:
+      private: c12d78315ebde71af0f7522fd22eb77ec889fa29f44188a94309d0ba90596b34
+    user:
+      generator: AUTH0JWT-BACKEND
