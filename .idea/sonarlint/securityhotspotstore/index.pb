@@ -27,3 +27,5 @@ Qmicroservice-category/src/main/java/com/microservice/category/dto/ProductDTO.ja
 ^microservice-category/src/main/java/com/microservice/category/service/CategoryServiceImpl.java,7\c\7c46d9ba5c833811ca12c66b4c22634217a7b7df
 ‡
 Wmicroservice-category/src/main/java/com/microservice/category/client/ProductClient.java,8\a\8a85112878045e77567bfec2729f81f7d60484be
+v
+Fmicroservice-user/src/main/java/com/zzootec/config/SecurityConfig.java,1\b\1b594f1fce94602af0a4c5c9bb18b39b49cfc342
