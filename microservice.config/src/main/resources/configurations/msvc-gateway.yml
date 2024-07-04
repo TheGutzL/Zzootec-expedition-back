@@ -13,11 +13,14 @@ spring:
         - id: products
           uri: "http://localhost:8090"
           predicates:
-            - Path=/api/product/**
-        - id: categories
-          uri: "http://localhost:9090"
-          predicates:
-            - Path=/api/category/**
+            - Path=/api/v1/product/**
+
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        issuer-uri: http://localhost:9090/realms/zzootec-realm
+
 eureka:
   client:
     register-with-eureka: false

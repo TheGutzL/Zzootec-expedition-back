@@ -2,25 +2,34 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="microservice-product" />
         <module name="microservice.eureka" />
         <module name="microservice.config" />
+        <module name="microservice-user" />
+        <module name="microservices-products" />
         <module name="microservice.gateway" />
-        <module name="microservice-category" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="microservice-category" target="21" />
+      <module name="microservice-product" target="21" />
+      <module name="SpringSecurityApp" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringSecurityApp" options="-parameters" />
       <module name="microservice-category" options="-parameters" />
       <module name="microservice-product" options="-parameters" />
+      <module name="microservice-user" options="-parameters" />
       <module name="microservice.config" options="-parameters" />
       <module name="microservice.eureka" options="-parameters" />
       <module name="microservice.gateway" options="-parameters" />
+      <module name="microservices-products" options="-parameters" />
     </option>
   </component>
 </project>
