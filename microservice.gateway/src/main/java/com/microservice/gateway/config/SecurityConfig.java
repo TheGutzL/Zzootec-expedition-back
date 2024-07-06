@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.oauth2.jwt.NimbusReactiveJwtDecoder;
-import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
@@ -14,19 +12,23 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
-        return serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchange -> exchange.pathMatchers("/eureka/**")
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
+        serverHttpSecurity
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(exchange -> exchange
+                        .pathMatchers("eureka/**")
                         .permitAll()
-                        .anyExchange().authenticated()
-                ).oauth2ResourceServer(oauth ->
-                        oauth.jwt(Customizer.withDefaults()))
-                .build();
+                        .anyExchange()
+                        .authenticated()
+                )
+                .oauth2ResourceServer(oauth -> oauth
+                        .jwt(Customizer.withDefaults()));
+        return serverHttpSecurity.build();
     }
 
-    @Bean
-    public ReactiveJwtDecoder reactiveJwtDecoder() {
-        String jwkSetUri = "http://localhost:9090/realms/zzootec-realm/protocol/openid-connect/certs";
-        return NimbusReactiveJwtDecoder.withJwkSetUri(jwkSetUri).build();
-    }
+//    @Bean
+//    public ReactiveJwtDecoder jwtDecoder() {
+//        return NimbusReactiveJwtDecoder.withJwkSetUri("http://localhost:9090/realms/zzootec-realm/protocol/openid-connect/certs")
+//                .build();
+//    }
 }

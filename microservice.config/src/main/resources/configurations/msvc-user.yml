@@ -1,8 +1,9 @@
 server:
-  port: 8090
+  port: 8091
+
 spring:
   application:
-    name: msvc-product
+    name: msvc-user
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/zzootecdb
@@ -11,7 +12,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
 
 eureka:
