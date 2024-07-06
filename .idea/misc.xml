@@ -12,6 +12,7 @@
       <set>
         <option value="$PROJECT_DIR$/microservice-category/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-product/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-user/pom.xml" />
       </set>
     </option>
   </component>

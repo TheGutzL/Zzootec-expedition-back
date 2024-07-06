@@ -16,9 +16,3 @@ spring:
           uri: "http://localhost:8091"
           predicates:
             - Path=/api/v1/user/**
-
-#security:
-#  oauth2:
-#    resourceserver:
-#      jwt:
-#        issuer-uri: http://localhost:9090/realms/zzootec-realm
