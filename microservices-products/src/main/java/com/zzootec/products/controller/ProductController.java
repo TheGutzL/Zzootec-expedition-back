@@ -18,4 +18,5 @@ public class ProductController {
     public ResponseEntity<?> findAllStudent() {
         return ResponseEntity.ok(productRepository.findAll());
     }
+
 }

@@ -2,8 +2,6 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: msvc-gateway
   cloud:
     gateway:
       discovery:
@@ -14,13 +12,13 @@ spring:
           uri: "http://localhost:8090"
           predicates:
             - Path=/api/v1/product/**
+        - id: users
+          uri: "http://localhost:8091"
+          predicates:
+            - Path=/api/v1/user/**
 
-security:
-  oauth2:
-    resourceserver:
-      jwt:
-        issuer-uri: http://localhost:9090/realms/zzootec-realm
-
-eureka:
-  client:
-    register-with-eureka: false
+#security:
+#  oauth2:
+#    resourceserver:
+#      jwt:
+#        issuer-uri: http://localhost:9090/realms/zzootec-realm

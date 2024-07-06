@@ -9,8 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="microservice.eureka" />
         <module name="microservice.config" />
-        <module name="microservice-user" />
         <module name="microservices-products" />
+        <module name="microservice-user" />
         <module name="microservice.gateway" />
       </profile>
     </annotationProcessing>
