@@ -11,12 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductMapper {
 
-    private final ProductController productController;
-
-    public ProductMapper(ProductController productController) {
-        this.productController = productController;
-    }
-
     public Product toProduct(ProductRequest productRequest) {
         return Product.builder()
                 .id(productRequest.id())
