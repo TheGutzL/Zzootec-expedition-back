@@ -21,7 +21,7 @@
     <module>microservice.eureka</module>
     <module>microservice.config</module>
     <module>microservices-products</module>
-    <module>microservice-user</module>
+    <module>microservice-customer</module>
   </modules>
 
   <properties>

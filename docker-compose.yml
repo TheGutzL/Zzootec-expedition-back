@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql-db:
     container_name: mysql_db
-    image: mysql:latest
+    image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: gutz
       MYSQL_DATABASE: zzootecdb
@@ -70,8 +70,8 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
-
-
+    networks:
+        - microservices-net
 
 networks:
   microservices-net:
