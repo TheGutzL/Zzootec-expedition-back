@@ -22,6 +22,7 @@
     <module>microservice.config</module>
     <module>microservices-products</module>
     <module>microservice-customer</module>
+    <module>order</module>
   </modules>
 
   <properties>

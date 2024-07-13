@@ -4,13 +4,11 @@ import com.zzootec.products.dto.ProductPurchaseRequest;
 import com.zzootec.products.dto.ProductPurchaseResponse;
 import com.zzootec.products.dto.ProductRequest;
 import com.zzootec.products.dto.ProductResponse;
-import com.zzootec.products.repository.ProductRepository;
-import com.zzootec.products.service.impl.ProductServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.zzootec.products.service.IProductService;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductServiceImpl productService;
+    private final IProductService productService;
 
     @GetMapping()
     public ResponseEntity<List<ProductResponse>> findAll() {

@@ -12,6 +12,7 @@
         <module name="microservices-products" />
         <module name="microservice.gateway" />
         <module name="microservice-customer" />
+        <module name="order" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="microservice.eureka" options="-parameters" />
       <module name="microservice.gateway" options="-parameters" />
       <module name="microservices-products" options="-parameters" />
+      <module name="order" options="-parameters" />
     </option>
   </component>
 </project>
