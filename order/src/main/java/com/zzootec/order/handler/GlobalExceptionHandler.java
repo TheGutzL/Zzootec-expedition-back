@@ -1,7 +1,6 @@
 package com.zzootec.order.handler;
 
 import com.zzootec.order.exception.BusinessException;
-import com.zzootec.products.exception.ProductPurchaseException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

@@ -6,6 +6,8 @@ import com.zzootec.order.dto.*;
 import com.zzootec.order.exception.BusinessException;
 import com.zzootec.order.kafka.OrderProducer;
 import com.zzootec.order.models.Order;
+import com.zzootec.order.payment.PaymentClient;
+import com.zzootec.order.payment.PaymentRequest;
 import com.zzootec.order.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public Long createdOrder(OrderRequest request) {
         // check the customer
@@ -44,6 +47,15 @@ public class OrderService {
                     )
             );
         }
+
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
 
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(

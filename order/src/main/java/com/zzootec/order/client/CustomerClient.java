@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @FeignClient(
         name = "customer-service",
-        url = "${customer-url}"
+        url = "${application.config.customer-url}"
 )
 public interface CustomerClient {
 
