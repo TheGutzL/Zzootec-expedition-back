@@ -1,5 +1,7 @@
-package com.zzootec.order.dto;
+package com.zzootec.order.kafka;
 
+import com.zzootec.order.dto.CustomerResponse;
+import com.zzootec.order.dto.PurchaseResponse;
 import com.zzootec.order.models.PaymentMethod;
 
 import java.math.BigDecimal;

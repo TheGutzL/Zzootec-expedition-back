@@ -1,5 +1,6 @@
 package com.zzootec.order.client;
 
+import com.zzootec.order.config.TokenHolder;
 import com.zzootec.order.dto.PurchaseRequest;
 import com.zzootec.order.dto.PurchaseResponse;
 import com.zzootec.order.exception.BusinessException;
@@ -25,6 +26,7 @@ public class ProductClient {
     public List<PurchaseResponse> purchaseProducts(List<PurchaseRequest> requestBody) {
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        headers.set(HttpHeaders.AUTHORIZATION, TokenHolder.getToken());
 
         HttpEntity<List<PurchaseRequest>> requestEntity = new HttpEntity<>(requestBody, headers);
         ParameterizedTypeReference<List<PurchaseResponse>> responseType =

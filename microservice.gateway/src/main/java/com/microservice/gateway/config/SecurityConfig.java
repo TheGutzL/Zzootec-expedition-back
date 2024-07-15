@@ -26,9 +26,5 @@ public class SecurityConfig {
         return serverHttpSecurity.build();
     }
 
-//    @Bean
-//    public ReactiveJwtDecoder jwtDecoder() {
-//        return NimbusReactiveJwtDecoder.withJwkSetUri("http://localhost:9090/realms/zzootec-realm/protocol/openid-connect/certs")
-//                .build();
-//    }
+
 }

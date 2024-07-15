@@ -4,6 +4,7 @@ import com.zzootec.order.client.CustomerClient;
 import com.zzootec.order.client.ProductClient;
 import com.zzootec.order.dto.*;
 import com.zzootec.order.exception.BusinessException;
+import com.zzootec.order.kafka.OrderConfirmation;
 import com.zzootec.order.kafka.OrderProducer;
 import com.zzootec.order.models.Order;
 import com.zzootec.order.payment.PaymentClient;

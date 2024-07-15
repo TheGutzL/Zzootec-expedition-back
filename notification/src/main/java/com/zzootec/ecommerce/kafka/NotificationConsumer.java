@@ -7,7 +7,6 @@ import com.zzootec.ecommerce.kafka.order.OrderConfirmation;
 import com.zzootec.ecommerce.kafka.payment.PaymentConfirmation;
 import com.zzootec.ecommerce.notification.Notification;
 import com.zzootec.ecommerce.notification.NotificationRepository;
-import com.zzootec.ecommerce.notification.NotificationType;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,7 @@ public class NotificationConsumer {
                         .build()
         );
 
-        var customerName = paymentConfirmation.customerFirstName() + " " + paymentConfirmation.customerLastName();
+        var customerName = paymentConfirmation.customerFirstName() + " " + paymentConfirmation.customerFirstName();
         emailService.sendPaymentSuccessEmail(
                 paymentConfirmation.customerEmail(),
                 customerName,
