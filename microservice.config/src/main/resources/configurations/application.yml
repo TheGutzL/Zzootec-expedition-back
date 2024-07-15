@@ -2,8 +2,10 @@ eureka:
   instance:
     hostname: localhost
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://localhost:8761/eureka
+name:
+  value: gutz
 spring:
   cloud:
     config:
