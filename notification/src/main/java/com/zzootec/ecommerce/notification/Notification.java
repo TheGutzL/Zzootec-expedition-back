@@ -29,9 +29,11 @@ public class Notification {
     private LocalDateTime notificationDate;
 
     @Lob
+    @Column(columnDefinition = "TEXT")
     private String orderConfirmation;
 
     @Lob
+    @Column(columnDefinition = "TEXT")
     private String paymentConfirmation;
 
     @Transient

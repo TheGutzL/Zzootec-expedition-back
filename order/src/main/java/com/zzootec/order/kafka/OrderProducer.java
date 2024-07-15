@@ -1,6 +1,5 @@
 package com.zzootec.order.kafka;
 
-import com.zzootec.order.dto.OrderConfirmation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;

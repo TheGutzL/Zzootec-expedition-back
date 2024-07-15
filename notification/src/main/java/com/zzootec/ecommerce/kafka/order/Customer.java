@@ -1,7 +1,7 @@
 package com.zzootec.ecommerce.kafka.order;
 
 public record Customer(
-        String id,
+        Long id,
         String firstName,
         String lastName,
         String email

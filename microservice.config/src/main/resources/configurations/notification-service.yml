@@ -21,8 +21,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: '*'
-        spring.json.type.mapping: orderConfirmation:com.zzootec.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.zzootec.ecommerce.kafka.payment.PaymentConfirmation
+        spring.json.trusted.packages: 'com.zzootec.ecommerce.kafka.*'
+        spring.json.type.mapping: "orderConfirmation:com.zzootec.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.zzootec.ecommerce.kafka.payment.PaymentConfirmation"
 
   mail:
     host: localhost
@@ -40,3 +40,7 @@ spring:
         timeout: 3000
         writetimeout: 5000
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
