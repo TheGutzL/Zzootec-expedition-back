@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8222
 
 spring:
   cloud:
@@ -8,11 +8,23 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: products
-          uri: "http://localhost:8090"
+        - id: customer-service
+          uri: lb:http://CUSTOMER-SERVICE
           predicates:
-            - Path=/api/v1/product/**
-        - id: users
-          uri: "http://localhost:8091"
+            - Path=/api/v1/customers/**
+        - id: order-service
+          uri: lb:http://ORDER-SERVICE
           predicates:
-            - Path=/api/v1/user/**
+            - Path=/api/v1/orders/**
+        - id: order-lines-service
+          uri: lb:http://ORDER-LINES-SERVICE
+          predicates:
+            - Path=/api/v1/order-lines/**
+        - id: product-service
+          uri: lb:http://PRODUCT-SERVICE
+          predicates:
+              - Path=/api/v1/products/**
+        - id: payment-service
+          uri: lb:http://PAYMENT-SERVICE
+          predicates:
+              - Path=/api/v1/payments/**
