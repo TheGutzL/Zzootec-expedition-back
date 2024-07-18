@@ -1,13 +1,10 @@
 package com.zzootec.customer.controller;
 
-import brave.Response;
 import com.zzootec.customer.dto.CustomerRequest;
 import com.zzootec.customer.dto.CustomerResponse;
-import com.zzootec.customer.model.Customer;
 import com.zzootec.customer.service.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +39,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<Long> createCustomer(
             @RequestBody @Valid CustomerRequest customerRequest
-            ) {
+    ) {
         return ResponseEntity.ok(this.customerService.createCustomer(customerRequest));
     }
 

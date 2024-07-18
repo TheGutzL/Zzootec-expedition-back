@@ -8,6 +8,8 @@ public record CustomerRequest(
         Long id,
         @NotNull(message = "Customer username is required")
         String username,
+        @NotNull(message = "Customer password is required")
+        String password,
         @NotNull(message = "Customer firstname is required")
         String firstName,
         @NotNull(message = "Customer lastname is required")
