@@ -12,6 +12,19 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: "http://localhost:9099/realms/zzootec"
+#          jwk-set-uri: "http://localhost:9099/realms/zzootec/protocol/openid-connect/certs"
+#
+#jwt:
+#  auth:
+#    converter:
+#      principle-attribute: preferred_username
+#      resource-id: spring-client-api-rest
+
 management:
   tracing:
     sampling:
