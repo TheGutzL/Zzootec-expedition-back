@@ -10,6 +10,7 @@
         <module name="microservice.config" />
         <module name="notification" />
         <module name="microservices-products" />
+        <module name="microservice-auth" />
         <module name="microservice.eureka" />
         <module name="payment" />
         <module name="microservice.gateway" />
@@ -27,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="SpringSecurityApp" options="-parameters" />
+      <module name="microservice-auth" options="-parameters" />
       <module name="microservice-category" options="-parameters" />
       <module name="microservice-customer" options="-parameters" />
       <module name="microservice-product" options="-parameters" />
