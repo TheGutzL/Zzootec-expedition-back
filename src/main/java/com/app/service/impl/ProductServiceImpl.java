@@ -46,6 +46,7 @@ public class ProductServiceImpl implements IProductService {
                 .description(product.description())
                 .price(product.price())
                 .quantity(product.quantity())
+                .image(product.image())
                 .category(category)
                 .build();
 
@@ -62,6 +63,7 @@ public class ProductServiceImpl implements IProductService {
         productEntity.setDescription(product.description());
         productEntity.setPrice(product.price());
         productEntity.setQuantity(product.quantity());
+        productEntity.setImage(product.image());
         productEntity.setCategory(category);
 
         ProductEntity updateEntity = productRepository.save(productEntity);

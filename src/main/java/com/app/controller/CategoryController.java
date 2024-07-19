@@ -69,7 +69,7 @@ public class CategoryController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
             categoryService.delete(id);
-            return new ResponseEntity<>("Destroy Result", HttpStatus.OK);
+            return new ResponseEntity<>("Category deleted successfully", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -1,26 +1,26 @@
 package com.app.mapper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.app.dto.user.UserRequest;
 import com.app.dto.user.UserResponse;
 import com.app.persistence.entity.RoleEntity;
-import com.app.persistence.entity.RoleEnum;
 import com.app.persistence.entity.UserEntity;
 import com.app.persistence.repository.RoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
     private static RoleRepository roleRepository = null;
 
-    @Autowired
-    public UserMapper(RoleRepository roleRepository) {
-        UserMapper.roleRepository = roleRepository;
-    }
     public static UserResponse entityToDto(UserEntity userEntity) {
         return new UserResponse(
                 userEntity.getId(),
@@ -41,7 +41,8 @@ public class UserMapper {
         if (userRequest.roleRequest() != null && userRequest.roleRequest().roleNames() != null) {
             List<String> roleNamesList = new ArrayList<>(userRequest.roleRequest().roleNames());
             for (String roleName : roleNamesList) {
-                List<RoleEntity> foundRoles = roleRepository.findRoleEntitiesByRoleEnumIn(Collections.singletonList(roleName));
+                List<RoleEntity> foundRoles = roleRepository
+                        .findRoleEntitiesByRoleEnumIn(Collections.singletonList(roleName));
                 roles.addAll(foundRoles);
             }
         }
@@ -55,5 +56,10 @@ public class UserMapper {
                 .roles(roles)
                 .build();
 
+    }
+
+    @Autowired
+    public UserMapper(RoleRepository roleRepository) {
+        UserMapper.roleRepository = roleRepository;
     }
 }

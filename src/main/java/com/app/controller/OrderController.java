@@ -14,62 +14,66 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.user.UserRequest;
-import com.app.dto.user.UserResponse;
-import com.app.service.IUserService;
+import com.app.dto.order.OrderRequest;
+import com.app.dto.order.OrderResponse;
+import com.app.service.IOrderService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/users")
-public class UserController {
+@RequestMapping("/api/v1/orders")
+public class OrderController {
 
     @Autowired
-    private IUserService userService;
+    private IOrderService orderService;
 
-    @GetMapping()
-    public ResponseEntity<List<UserResponse>> findAll() {
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> findAll() {
         try {
-            return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> findById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponse> findOneById(
+            @PathVariable Long id) {
         try {
-            return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping()
-    public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest userRequest) {
+    @PostMapping
+    public ResponseEntity<OrderResponse> create(@RequestBody @Valid OrderRequest orderRequest) {
         try {
-            return new ResponseEntity<>(userService.save(userRequest), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.save(orderRequest), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserRequest userRequest) {
+    public ResponseEntity<OrderResponse> update(
+            @PathVariable Long id,
+            @RequestBody @Valid OrderRequest orderRequest) {
         try {
-            return new ResponseEntity<>(userService.update(id, userRequest), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.update(id, orderRequest), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> destroy(@PathVariable Long id) {
+    public ResponseEntity<Void> destroy(@PathVariable Long id) {
         try {
-            userService.delete(id);
+            orderService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

@@ -46,7 +46,8 @@ public class ProductController {
     }
 
     @PostMapping()
-    public ResponseEntity<ProductResponse> create(@RequestBody @Valid ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> create(
+            @Valid @RequestBody ProductRequest productRequest) {
         try {
             return new ResponseEntity<>(productService.save(productRequest), HttpStatus.OK);
         } catch (Exception e) {

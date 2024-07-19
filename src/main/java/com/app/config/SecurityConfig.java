@@ -55,10 +55,20 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.POST, "/api/v1/users/**").hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/v1/users/**").hasAnyRole("ADMIN");
-                    
 
-                    http.requestMatchers(HttpMethod.PATCH, "/method/patch").hasAnyAuthority("REFACTOR");
-                    http.requestMatchers(HttpMethod.GET, "/method/get").hasAnyAuthority("READ");
+                    http.requestMatchers(HttpMethod.GET, "/api/v1/orders/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/orders/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/api/v1/orders/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/**").hasAnyRole("ADMIN");
+
+                    http.requestMatchers(HttpMethod.GET, "/api/v1/addresses/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/addresses/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/api/v1/addresses/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/v1/addresses/**").hasAnyRole("ADMIN");
+
+                    // http.requestMatchers(HttpMethod.PATCH,
+                    // "/method/patch").hasAnyAuthority("REFACTOR");
+                    // http.requestMatchers(HttpMethod.GET, "/method/get").hasAnyAuthority("READ");
 
                     // Configurar el resto de endpoints - no especificados
                     http.anyRequest().denyAll();
