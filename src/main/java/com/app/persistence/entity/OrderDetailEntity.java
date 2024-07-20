@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "order_details")
-public class OrdenDetailEntity {
+public class OrderDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,9 +36,9 @@ public class OrdenDetailEntity {
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
 
-    private int quantity;
+    private Integer quantity;
 
     @Column(precision = 19, scale = 2)
-    private BigDecimal price;
+    private BigDecimal subtotal;
 
 }

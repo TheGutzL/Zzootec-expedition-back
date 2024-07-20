@@ -66,6 +66,11 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.PUT, "/api/v1/addresses/**").hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE, "/api/v1/addresses/**").hasAnyRole("ADMIN");
 
+                    http.requestMatchers(HttpMethod.GET, "/api/v1/order-details/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/order-details/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/api/v1/order-details/**").hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/v1/order-details/**").hasAnyRole("ADMIN");
+
                     // http.requestMatchers(HttpMethod.PATCH,
                     // "/method/patch").hasAnyAuthority("REFACTOR");
                     // http.requestMatchers(HttpMethod.GET, "/method/get").hasAnyAuthority("READ");

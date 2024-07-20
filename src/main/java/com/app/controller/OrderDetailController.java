@@ -14,61 +14,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.address.AddressRequest;
-import com.app.dto.address.AddressResponse;
-import com.app.service.IAddressService;
+import com.app.dto.orderdetail.OrderDetailRequest;
+import com.app.dto.orderdetail.OrderDetailResponse;
+import com.app.service.IOrderDetailService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/addresses")
-public class AddressController {
+@RequestMapping("api/v1/order-details")
+public class OrderDetailController {
 
     @Autowired
-    private IAddressService addressService;
+    private IOrderDetailService orderDetailService;
 
-    @GetMapping
-    public ResponseEntity<List<AddressResponse>> findAll() {
+    @GetMapping()
+    public ResponseEntity<List<OrderDetailResponse>> getAll() {
         try {
-            return new ResponseEntity<>(addressService.findAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<AddressResponse>> findAllByUser(@PathVariable("id") Long userId) {
-        try {
-
-            return new ResponseEntity<>(addressService.findAllByUserId(userId), HttpStatus.OK);
+            return new ResponseEntity<>(orderDetailService.findAll(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressResponse> findOneById(@PathVariable Long id) {
+    public ResponseEntity<OrderDetailResponse> getOne(@PathVariable Long id) {
         try {
-            return new ResponseEntity<>(addressService.findOneById(id), HttpStatus.OK);
+            return new ResponseEntity<>(orderDetailService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping()
-    public ResponseEntity<AddressResponse> create(
-            @RequestBody @Valid AddressRequest addressRequest) {
+    public ResponseEntity<OrderDetailResponse> create(@RequestBody @Valid OrderDetailRequest detailRequest) {
         try {
-            return new ResponseEntity<>(addressService.save(addressRequest), HttpStatus.OK);
+            return new ResponseEntity<>(orderDetailService.save(detailRequest), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressResponse> update(@PathVariable Long id, @RequestBody @Valid AddressRequest addressRequest) {
+    public ResponseEntity<OrderDetailResponse> update(
+            @PathVariable Long id,
+            @RequestBody @Valid OrderDetailRequest detailRequest) {
         try {
-            return new ResponseEntity<>(addressService.update(id, addressRequest), HttpStatus.OK);
+            return new ResponseEntity<>(orderDetailService.update(id, detailRequest), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -77,10 +68,11 @@ public class AddressController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> destroy(@PathVariable Long id) {
         try {
-            addressService.delete(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            orderDetailService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

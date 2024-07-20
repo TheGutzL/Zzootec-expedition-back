@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.order.OrderRequest;
 import com.app.dto.order.OrderResponse;
+import com.app.dto.orderdetail.OrderDetailResponse;
+import com.app.service.IOrderDetailService;
 import com.app.service.IOrderService;
 
 import jakarta.validation.Valid;
@@ -27,8 +29,11 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
+    @Autowired
+    private IOrderDetailService orderDetailService;
+
     @GetMapping
-    public ResponseEntity<List<OrderResponse>> findAll() {
+    public ResponseEntity<List<OrderResponse>> getAll() {
         try {
             return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
         } catch (Exception e) {
@@ -37,10 +42,19 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> findOneById(
+    public ResponseEntity<OrderResponse> getOneById(
             @PathVariable Long id) {
         try {
             return new ResponseEntity<>(orderService.findById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<List<OrderDetailResponse>> getDetailsByOrderId(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(orderDetailService.findAllByOrderId(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

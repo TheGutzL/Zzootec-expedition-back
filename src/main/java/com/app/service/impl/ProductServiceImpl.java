@@ -48,7 +48,7 @@ public class ProductServiceImpl implements IProductService {
                 .quantity(product.quantity())
                 .image(product.image())
                 .category(category)
-                .build();
+                .build();   
 
         ProductEntity productSaved = productRepository.save(productEntity);
         return ProductMapper.entityToDto(productSaved);

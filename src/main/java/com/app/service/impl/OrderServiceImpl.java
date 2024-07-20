@@ -3,8 +3,6 @@ package com.app.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.app.persistence.repository.AddressRepository;
-import com.app.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,9 @@ import com.app.persistence.entity.AddressEntity;
 import com.app.persistence.entity.OrderEntity;
 import com.app.persistence.entity.OrderStatus;
 import com.app.persistence.entity.UserEntity;
+import com.app.persistence.repository.AddressRepository;
 import com.app.persistence.repository.OrderRepository;
+import com.app.persistence.repository.UserRepository;
 import com.app.service.IOrderService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -57,7 +57,6 @@ public class OrderServiceImpl implements IOrderService {
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
 
         // Actualizar los campos básicos
-        orderFound.setTotal(orderRequest.total());
         orderFound.setStatus(OrderStatus.valueOf(orderRequest.status()));
 
         // Buscar y validar UserEntity

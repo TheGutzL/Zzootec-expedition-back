@@ -27,9 +27,9 @@ public class ProductEntity {
 
     private String name;
     private String description;
-    private double price;
+    private Double price;
     private String image;
-    private int quantity;
+    private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoryEntity category;
