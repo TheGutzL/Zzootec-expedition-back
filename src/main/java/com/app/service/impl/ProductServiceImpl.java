@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.product.ProductRequest;
@@ -32,6 +34,11 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public Page<ProductResponse> findAllPaginated(Pageable pageable) {
+        return productRepository.findAll(pageable).map(ProductMapper::entityToDto);
+    }
+
+    @Override
     public ProductResponse findById(Long id) {
         ProductEntity product = productRepository.findById(id).orElseThrow();
         return ProductMapper.entityToDto(product);
@@ -48,7 +55,7 @@ public class ProductServiceImpl implements IProductService {
                 .quantity(product.quantity())
                 .image(product.image())
                 .category(category)
-                .build();   
+                .build();
 
         ProductEntity productSaved = productRepository.save(productEntity);
         return ProductMapper.entityToDto(productSaved);

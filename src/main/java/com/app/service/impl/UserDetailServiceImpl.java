@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -94,6 +95,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 String username = authCreateUserRequest.username();
                 String password = authCreateUserRequest.password();
                 List<String> roleRequest = authCreateUserRequest.roleRequest().roleListName();
+                
 
                 Set<RoleEntity> roleEntitiesSet = roleRepository.findRoleEntitiesByRoleEnumIn(roleRequest).stream()
                                 .collect(Collectors.toSet());
@@ -105,6 +107,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 UserEntity userEntity = UserEntity.builder()
                                 .username(username)
                                 .password(passwordEncoder.encode(password))
+                                .firstName(authCreateUserRequest.firstName())
+                                .lastName(authCreateUserRequest.lastName())
+                                .email(authCreateUserRequest.email())
                                 .roles(roleEntitiesSet)
                                 .isEnabled(true)
                                 .accountNoLocked(true)
@@ -131,7 +136,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 String accessToken = jwtUtils.createToken(authentication);
                 AuthResponse authResponse = new AuthResponse(userCreated.getUsername(), "User created successfuly",
                                 accessToken, true);
-                                
+
                 return authResponse;
         }
 

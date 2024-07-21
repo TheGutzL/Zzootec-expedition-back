@@ -10,6 +10,8 @@ public interface IUserService {
 
     UserResponse findById(Long id);
 
+    UserResponse getUserByUsername(String username);
+
     UserResponse save(UserRequest userRequest);
 
     UserResponse update(Long id, UserRequest userRequest);

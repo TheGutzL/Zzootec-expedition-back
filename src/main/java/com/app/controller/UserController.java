@@ -45,6 +45,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<UserResponse> getUserByUsername(@PathVariable String username) {
+        try {
+            return new ResponseEntity<>(userService.getUserByUsername(username), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping()
     public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest userRequest) {
         try {

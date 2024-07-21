@@ -3,6 +3,8 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +33,16 @@ public class ProductController {
     public ResponseEntity<List<ProductResponse>> findAll() {
         try {
             return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<ProductResponse>> findAllPaginated(Pageable pageable) {
+        try {
+            Page<ProductResponse> page = productService.findAllPaginated(pageable);
+            return new ResponseEntity<>(page, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

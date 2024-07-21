@@ -45,6 +45,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserResponse getUserByUsername(String username) {
+        return userRepository.findUserEntityByUsername(username)
+                .map(UserMapper::entityToDto)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado con el username: " + username));
+    }
+
+    @Override
     public UserResponse save(UserRequest userRequest) {
         List<String> roleNames = new ArrayList<>(userRequest.roleRequest().roleNames());
         Set<RoleEntity> roles = new HashSet<>(roleRepository.findRoleEntitiesByRoleEnumIn(roleNames));
@@ -91,7 +98,7 @@ public class UserServiceImpl implements IUserService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el ID: " + id));
 
         user.getRoles().clear();
-        
+
         userRepository.save(user);
 
         userRepository.deleteById(id);
