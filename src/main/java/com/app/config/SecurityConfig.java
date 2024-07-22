@@ -51,7 +51,6 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll();
                     http.requestMatchers(HttpMethod.GET, "/api/v1/products/paginated").permitAll();
                     http.requestMatchers(HttpMethod.GET, "/api/v1/products/{id}").permitAll();
-                    
 
                     // Configurar los endpoints privados
                     http.requestMatchers(HttpMethod.GET, "/api/v1/products/**").hasAnyRole("ADMIN", "USER", "INVITED");

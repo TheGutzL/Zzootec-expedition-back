@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.order.OrderRequest;
@@ -38,6 +40,11 @@ public class OrderServiceImpl implements IOrderService {
         return orderRepository.findAll().stream()
                 .map(OrderMapper::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<OrderResponse> findAllPaginated(Pageable pageable) {
+        return orderRepository.findAll(pageable).map(OrderMapper::entityToDto);
     }
 
     @Override

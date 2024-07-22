@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.category.CategoryRequest;
@@ -24,6 +26,11 @@ public class CategoryServiceImpl implements ICategoryService {
         return categoryRepository.findAll().stream()
                 .map(CategoryMapper::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<CategoryResponse> findAllPaginated(Pageable pageable) {
+        return categoryRepository.findAll(pageable).map(CategoryMapper::entityToDto);
     }
 
     @Override

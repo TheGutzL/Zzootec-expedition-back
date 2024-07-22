@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,11 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findAll().stream()
                 .map(UserMapper::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<UserResponse> findAllPaginated(Pageable pageable) {
+        return userRepository.findAll(pageable).map(UserMapper::entityToDto);
     }
 
     @Override

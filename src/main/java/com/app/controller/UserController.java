@@ -3,6 +3,11 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +32,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private PagedResourcesAssembler<UserResponse> assembler;
+
     @GetMapping()
     public ResponseEntity<List<UserResponse>> findAll() {
         try {
@@ -34,6 +42,13 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/paginated")
+    public PagedModel<EntityModel<UserResponse>> findAll(
+            Pageable pageable) {
+        Page<UserResponse> users = userService.findAllPaginated(pageable);
+        return assembler.toModel(users);
     }
 
     @GetMapping("/{id}")
