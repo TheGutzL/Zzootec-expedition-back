@@ -2,11 +2,13 @@ package com.app.dto.orderdetail;
 
 import java.math.BigDecimal;
 
+import com.app.dto.product.ProductResponse;
+
 public record OrderDetailResponse(
-        Long id,
-        Long orderId,
-        Long productId,
-        Integer quantity,
-        BigDecimal subtotal) {
+                Long id,
+                Long orderId,
+                ProductResponse product,
+                Integer quantity,
+                BigDecimal subtotal) {
 
 }

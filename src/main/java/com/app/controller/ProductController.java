@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +32,9 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private PagedResourcesAssembler<ProductResponse> assembler;
+
     @GetMapping()
     public ResponseEntity<List<ProductResponse>> findAll() {
         try {
@@ -39,13 +45,9 @@ public class ProductController {
     }
 
     @GetMapping("/paginated")
-    public ResponseEntity<Page<ProductResponse>> findAllPaginated(Pageable pageable) {
-        try {
-            Page<ProductResponse> page = productService.findAllPaginated(pageable);
-            return new ResponseEntity<>(page, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public PagedModel<EntityModel<ProductResponse>> findAllPaginated(Pageable pageable) {
+        Page<ProductResponse> products = productService.findAllPaginated(pageable);
+        return assembler.toModel(products);
     }
 
     @GetMapping("/{id}")

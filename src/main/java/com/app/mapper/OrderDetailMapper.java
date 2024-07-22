@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.app.dto.orderdetail.OrderDetailRequest;
 import com.app.dto.orderdetail.OrderDetailResponse;
+import com.app.dto.product.ProductResponse;
 import com.app.persistence.entity.OrderDetailEntity;
 import com.app.persistence.entity.OrderEntity;
 import com.app.persistence.entity.ProductEntity;
@@ -36,10 +37,12 @@ public class OrderDetailMapper {
 
     public static OrderDetailResponse entityToResponse(OrderDetailEntity ordenDetailEntity) {
 
+        ProductResponse product = ProductMapper.entityToDto(ordenDetailEntity.getProduct());
+
         return new OrderDetailResponse(
                 ordenDetailEntity.getId(),
                 ordenDetailEntity.getOrder().getId(),
-                ordenDetailEntity.getProduct().getId(),
+                product,
                 ordenDetailEntity.getQuantity(),
                 ordenDetailEntity.getSubtotal());
     }

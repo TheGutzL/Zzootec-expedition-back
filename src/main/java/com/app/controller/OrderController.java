@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.order.OrderRequest;
 import com.app.dto.order.OrderResponse;
 import com.app.dto.orderdetail.OrderDetailResponse;
+import com.app.dto.payment.PaymentResponse;
 import com.app.service.IOrderDetailService;
 import com.app.service.IOrderService;
+import com.app.service.PaymentService;
 
 import jakarta.validation.Valid;
 
@@ -28,6 +30,9 @@ public class OrderController {
 
     @Autowired
     private IOrderService orderService;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @Autowired
     private IOrderDetailService orderDetailService;
@@ -60,10 +65,21 @@ public class OrderController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<OrderResponse> create(@RequestBody @Valid OrderRequest orderRequest) {
+    @GetMapping("/user/{idUser}")
+    public ResponseEntity<List<OrderResponse>> getOrdersByUserId(@PathVariable Long idUser) {
         try {
-            return new ResponseEntity<>(orderService.save(orderRequest), HttpStatus.OK);
+            return new ResponseEntity<>(orderService.findByUserId(idUser), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<PaymentResponse> create(@RequestBody @Valid OrderRequest orderRequest) {
+        try {
+            OrderResponse orderResponse = orderService.save(orderRequest);
+            PaymentResponse res = paymentService.createPaymentLink(orderResponse);
+            return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

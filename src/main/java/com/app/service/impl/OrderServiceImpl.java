@@ -41,6 +41,13 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
+    public List<OrderResponse> findByUserId(Long userId) {
+        return orderRepository.findByUserId(userId).stream()
+                .map(OrderMapper::entityToDto)
+                .toList();
+    }
+
+    @Override
     public OrderResponse findById(Long id) {
         return OrderMapper.entityToDto(orderRepository.findById(id).orElseThrow());
     }
@@ -75,6 +82,15 @@ public class OrderServiceImpl implements IOrderService {
 
         // Convertir y devolver OrderResponse
         return OrderMapper.entityToDto(updatedOrder);
+    }
+
+    @Override
+    @Transactional
+    public void updateOrderStatus(Long id, OrderStatus status) {
+        OrderEntity orderFound = orderRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
+        orderFound.setStatus(status);
+        orderRepository.save(orderFound);
     }
 
     @Override
