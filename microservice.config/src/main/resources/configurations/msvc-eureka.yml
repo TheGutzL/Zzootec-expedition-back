@@ -6,6 +6,8 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  username: gutz
+  password: gutz
 
 server:
   port: 8761

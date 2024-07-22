@@ -10,7 +10,4 @@ public class KeycloakProvider {
     private static final String PASSWORD_CONSOLE = "admin";
     private static final String CLIENT_SECRET = "j2lq3G3BjPpZDHyzf1VGpvYxQDfRvXuY";
 
-
-
-
 }

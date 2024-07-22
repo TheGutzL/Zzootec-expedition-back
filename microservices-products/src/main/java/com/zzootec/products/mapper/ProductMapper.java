@@ -1,12 +1,12 @@
 package com.zzootec.products.mapper;
 
-import com.zzootec.products.controller.ProductController;
+import org.springframework.stereotype.Service;
+
 import com.zzootec.products.dto.ProductPurchaseResponse;
 import com.zzootec.products.dto.ProductRequest;
 import com.zzootec.products.dto.ProductResponse;
 import com.zzootec.products.models.Category;
 import com.zzootec.products.models.Product;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ProductMapper {
@@ -21,8 +21,7 @@ public class ProductMapper {
                 .category(
                         Category.builder()
                                 .id(productRequest.categoryId())
-                                .build()
-                )
+                                .build())
                 .build();
     }
 
@@ -35,8 +34,7 @@ public class ProductMapper {
                 product.getPrice(),
                 product.getCategory().getId(),
                 product.getCategory().getName(),
-                product.getCategory().getDescription()
-        );
+                product.getCategory().getDescription());
     }
 
     public ProductPurchaseResponse toProductPurchaseResponse(Product product, double quantity) {
@@ -45,7 +43,6 @@ public class ProductMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                quantity
-        );
+                quantity);
     }
 }

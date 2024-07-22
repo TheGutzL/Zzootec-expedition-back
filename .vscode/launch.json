@@ -62,6 +62,17 @@
       "mainClass": "com.zzootec.customer.MicroserviceCustomerApplication",
       "projectName": "microservice-customer",
       "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64850 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-customer"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MicroserviceAuthApplication<microservice-auth>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.zzootec.auth.MicroserviceAuthApplication",
+      "projectName": "microservice-auth",
+      "args": "",
       "envFile": "${workspaceFolder}/.env"
     }
   ]

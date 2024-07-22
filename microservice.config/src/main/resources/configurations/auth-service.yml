@@ -3,12 +3,12 @@ server:
 spring:
   application:
     name: auth-service
-keycloak:
-  realm: zzootec-realm
-  auth-server-url: http://localhost:9090/auth
-  resource: microservice-auth
-  credentials:
-    secret: UblLDYx7fiPfGzzQHCyUhwTBFTDRLZ3i
-  principal-attribute: preferred_username
+# keycloak:
+#   realm: zzootec-realm
+#   auth-server-url: http://localhost:9090/auth
+#   resource: microservice-auth
+#   credentials:
+#     secret: UblLDYx7fiPfGzzQHCyUhwTBFTDRLZ3i
+#   principal-attribute: preferred_username
 
-spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:9090/realms/zzootec-realm
+# spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:9090/realms/zzootec-realm

@@ -16,15 +16,15 @@ public class SecurityConfig {
         serverHttpSecurity
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("eureka/**")
+                        .pathMatchers("eureka/**", "/api/v1/auth/login",
+                                "/api/v1/auth/signup")
                         .permitAll()
                         .anyExchange()
-                        .authenticated()
-                )
+                        .authenticated())
                 .oauth2ResourceServer(oauth -> oauth
-                        .jwt(Customizer.withDefaults()));
+                        .jwt(Customizer.withDefaults()))
+                .oauth2Login();
         return serverHttpSecurity.build();
     }
-
 
 }

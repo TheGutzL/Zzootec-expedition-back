@@ -11,9 +11,10 @@ import com.zzootec.auth.dto.LoginRequest;
 public class AuthController {
     
     @PostMapping("/login")
-    public ResponseEntity<?> login(
+    public ResponseEntity<String> login(
         @RequestBody LoginRequest loginRequest
     ) {
+        System.out.println("Login request received");
         return ResponseEntity.ok().build();
     }
 
